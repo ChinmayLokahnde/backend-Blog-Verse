@@ -15,7 +15,7 @@ connectDB();
 const app  = express();
 
 const allowedOrigins = [
-  'https://blog-verse.vercel.app', 
+  'https://blog-verse-xi.vercel.app', 
   'http://localhost:5173',         
 ];
 
