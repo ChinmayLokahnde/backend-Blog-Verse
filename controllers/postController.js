@@ -3,7 +3,7 @@ import { generateSlug } from '../utils/generateSlug.js';
 
 export const createPost = async (req, res) => {
   const { title, content } = req.body;
-  const thumbnail = req.file ? req.file.path : '';
+  const thumbnail = req.file ? req.file.path.replace(/\\/g, "/") : '';
   try {
     const post = await Post.create({
       title,
