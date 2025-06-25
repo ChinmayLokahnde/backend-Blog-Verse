@@ -15,10 +15,8 @@ connectDB();
 const app  = express();
 app.use(
   cors({
-    origin: [
-      'http://localhost:5173', 
-      'https://blog-verse-xi.vercel.app/'
-    ],
+    origin:  
+    'https://blog-verse-xi.vercel.app/',
     credentials: true,               
   })
 );
