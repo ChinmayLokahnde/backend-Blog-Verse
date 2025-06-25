@@ -22,6 +22,10 @@ app.use(
 );
 app.use(express.json());
 
+
+app.get('/', (req, res) => {
+  res.send('API is running...');
+});
 app.use('/api/auth', authroutes);
 app.use('/api/posts', postRoutes);
 app.use('/api/ai', aiRoutes);
