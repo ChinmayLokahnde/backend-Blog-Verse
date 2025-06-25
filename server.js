@@ -15,8 +15,11 @@ connectDB();
 const app  = express();
 app.use(
   cors({
-    origin: 'http://localhost:5173', // ✅ Must match frontend exactly
-    credentials: true,               // ✅ Allow cookies/headers
+    origin: [
+      'http://localhost:5173', 
+      'https://blog-verse-xi.vercel.app/'
+    ],
+    credentials: true,               
   })
 );
 app.use(express.json());
