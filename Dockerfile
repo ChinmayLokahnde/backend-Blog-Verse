@@ -1,17 +1,25 @@
-FROM node:18
+# Use a Node.js + Python base image
+FROM node:18-bullseye
 
-RUN apt-get update && apt-get install -y python3 python3-pip
+
+RUN apt-get update && \
+    apt-get install -y python3 python3-pip python3-venv && \
+    apt-get clean
+
+
+ENV VIRTUAL_ENV=/opt/venv
+RUN python3 -m venv $VIRTUAL_ENV
+ENV PATH="$VIRTUAL_ENV/bin:$PATH"
+
 
 COPY requirements.txt .
-RUN pip3 install -r requirements.txt
+RUN pip install --upgrade pip && pip install -r requirements.txt
+
 
 WORKDIR /app
-
-COPY package*.json ./
-RUN npm install
-
 COPY . .
 
-EXPOSE 5000
+RUN npm install
 
-CMD [ "npm", "start" ]
+EXPOSE 5000
+CMD ["npm", "start"]
