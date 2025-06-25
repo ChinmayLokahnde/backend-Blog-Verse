@@ -6,11 +6,15 @@ import authroutes from "./routes/auth.js";
 import postRoutes from "./routes/posts.js";
 import aiRoutes from "./routes/ai.js";
 import upload from "./middleware/uploadMiddleware.js";
+import path from "path";
+import { fileURLToPath } from "url";
 
 dotenv.config();
 console.log("JWT_SECRET on server start:", process.env.JWT_SECRET);
 connectDB();
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const app  = express();
 
@@ -33,6 +37,7 @@ app.use(
 );
 app.use(express.json());
 
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 app.get('/', (req, res) => {
   res.send('API is running...');
